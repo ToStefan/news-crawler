@@ -1,10 +1,6 @@
+from utils import get_request, to_soup
 
-from utils import clear, get_request, to_soup, write_file
-from fcs_render import fcs_render_main
-
-news_json_path = "data/news.json"
-
-def content_crawler(link):
+def content_scraper(link):
 	request = get_request(link)
 	soup = to_soup(request)
 	main_content = soup.find("div", {"id": "inner-block"})
@@ -14,12 +10,9 @@ def content_crawler(link):
 
 def news_crawler(soup):
 	news = soup.find_all("div", {"class": "vest_container"})
-	news_len = str(len(news))
 	news_json_list = []
 
-	for index, each in enumerate(news):
-
-		print("Procesuira: " + str(index + 1) + "/" + news_len)
+	for each in news:
 
 		datum = each.find("div", {"class", "meta"}).text
 		slika = each.find("img")["src"]
@@ -27,7 +20,7 @@ def news_crawler(soup):
 		naslov = each.find("h2").text
 		tip = each.find("div", {"class", "img_desc"}).text
 		link = each.find("a")["href"]
-		content = content_crawler(link)
+		content = content_scraper(link)
 
 		news_json_list.append({
 			"naslov": naslov,
@@ -40,13 +33,8 @@ def news_crawler(soup):
 
 	return news_json_list
 	
-def crawler_main():
+def fcs_crawler_main():
 	request = get_request("http://www.fcs.rs/category/vesti/")
 	soup = to_soup(request)
 	news_json_list = news_crawler(soup)
-	write_file(news_json_path, news_json_list)
-
-if __name__ == '__main__':
-	clear()
-	crawler_main()
-	fcs_render_main()
+	return news_json_list
