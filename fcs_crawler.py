@@ -14,20 +14,20 @@ def news_crawler(soup):
 
 	for each in news:
 
-		datum = each.find("div", {"class", "meta"}).text
-		slika = each.find("img")["src"]
-		opis = each.find("p").text
-		naslov = each.find("h2").text
+		date = each.find("div", {"class", "meta"}).text
+		picture = each.find("img")["src"]
+		description = each.find("p").text
+		title = each.find("h2").text
 		tip = each.find("div", {"class", "img_desc"}).text
 		link = each.find("a")["href"]
 		content = content_scraper(link)
 
 		news_json_list.append({
-			"naslov": naslov,
-			"datum": datum, 
-			"slika": slika,
-			"opis": opis,
-			"tip": tip,
+			"title": title,
+			"date": date, 
+			"picture": picture,
+			"description": description,
+			"type": tip,
 			"link": link,
 			"content": content})
 
