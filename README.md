@@ -30,3 +30,8 @@ docker ps
 ```sh
 docker system prune -a
 ```
+
+- Remove running docker container
+```sh
+docker rm -f <name>
+```
