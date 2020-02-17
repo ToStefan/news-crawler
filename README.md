@@ -28,5 +28,5 @@ docker ps
 
 - Clear all not running stuff
 ```sh
-Docker system prune -a
+docker system prune -a
 ```
