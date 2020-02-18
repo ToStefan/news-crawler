@@ -1,4 +1,6 @@
-## News crawler
+[![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/ToStefan/news-crawler/?ref=repository-badge)
+
+## FCS Crawler
 
 Filmski Centar Srbije
 
