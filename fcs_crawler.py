@@ -4,8 +4,10 @@ FCS_URL = "http://www.fcs.rs/category/vesti/"
 ATTRS_TO_REMOVE = ["srcset", "alt", "id", "class", "height", "width", "sizes", "style"]
 
 def remove_attributes(soup):
-	for div in soup.find_all("div"): div.decompose()
-	for script in soup.find_all("script"): script.decompose()
+	for div in soup.find_all("div"):
+		div.decompose()
+	for script in soup.find_all("script"):
+		script.decompose()
 
 	for attribute in ATTRS_TO_REMOVE:
 		for tag in soup.find_all(attrs={attribute: True}):
@@ -42,18 +44,20 @@ def crawl_articles(url):
 		content = scrap_content(url)
 		news_data.append({
 			"title": title,
-			"date": date, 
+			"date": date,
 			"picture": picture,
 			"description": description,
 			"type": tip,
 			"url": url,
 			"content": content})
 	return news_data
-	
+
 def fcs_crawler():
 	return crawl_articles(FCS_URL)
 
 if __name__ == '__main__':
+
 	from utils import dict_to_json
 	data = fcs_crawler()
 	dict_to_json("JSON_IGNORE.json", data)
+	

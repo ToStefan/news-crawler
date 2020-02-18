@@ -4,10 +4,13 @@ from flask import jsonify
 from flask_restful import Resource
 
 class FcsCrawler(Resource):
-	def get(self):
+	@staticmethod
+	def get():
 		data = fcs_crawler()
 		return jsonify(data)
 
 class Hello(Resource):
-	def get(self):
+	@staticmethod
+	def get():
 		return jsonify({"message": "Hello!"})
+		

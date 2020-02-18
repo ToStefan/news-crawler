@@ -1,16 +1,17 @@
-from flask import Flask, jsonify
+from flask import Flask
 from flask_restful import Api
 
 from resource import FcsCrawler, Hello
 
-app = Flask(__name__)
-api = Api(app)
+APP = Flask(__name__)
+API = Api(APP)
 
-api.add_resource(FcsCrawler, "/fcs-crawler")
-api.add_resource(Hello, "/hello")
+API.add_resource(FcsCrawler, "/fcs-crawler")
+API.add_resource(Hello, "/hello")
 
 def app_main():
-	app.run(host='0.0.0.0')
+	APP.run(host='0.0.0.0')
 
 if __name__ == '__main__':
+
 	app_main()
