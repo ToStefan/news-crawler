@@ -44,7 +44,7 @@ def crawl_articles(url):
 		content = scrap_content(url)
 		news_data.append({
 			"title": title,
-			"date": date,
+			"dateInfo": date,
 			"picture": picture,
 			"description": description,
 			"type": tip,
